@@ -1,0 +1,182 @@
+<div class="user-profile">
+
+<div class="profile-text">
+
+<a ngbDropdownToggle style="color:black; font-size: 14px; " ngbDropdown href="javascript:void(0)" class="u-dropdown">
+<b>{{user_name}}</b><i class="fa fa-angle-down"></i>
+
+<div align="center">
+
+<div class="dropdown-menu animated flipInY" ngbDropdownMenu>
+<a [routerLink]="['/change_password']" [routerLinkActive]="['router-link-active']" 
+class="dropdown-item" target="_self" style="color:black;">
+Change Password</a>
+<a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" 
+class="dropdown-item" target="_self" (click)="onLoggedout()" style="color:black;">Logout</a>
+</div>
+</div>
+</a>
+</div>
+</div>
+
+<!-- End User profile text-->
+<nav style="margin-top: -30px; " class="sidebar-nav">
+<ul id="sidebarnav">
+<!-- First level menu -->
+
+<li>
+<a style="font-size:12.5px; color:black;" routerLink="/dashboard/dashboard1" 
+[routerLinkActive]="['router-link-active']">
+<b>Dashboard</b></a>
+</li>
+
+<!--li>
+<a style="font-size:15px; color:black;" routerLink="/home" 
+[routerLinkActive]="['router-link-active']">
+<b>Home</b></a>
+</li-->
+
+<li style="margin-top: -20px;" [class.active]="showMenu === 'panel'" 
+*ngFor="let menu of getModulesData; let i= index;" >
+<span *ngIf="menu.module.moduleDesc">
+<a style="font-size:12.5px; color:black;" [routerLink]="" (click)="addExpandClass(i)" 
+aria-expanded="true"  class="has-arrow" >
+<!-- <i [ngClass]="[menu.icon]"></i> -->
+<span class="hide-menu"><b>{{menu.module.moduleDesc}}</b></span>
+</a>
+
+<ul aria-expanded="true" class="collapse" 
+*ngIf="menu.module.moduleDesc !== ''" [class.in]="showMenu === i">
+<li  style="margin-top: -15px;margin-left: -20px; " 
+*ngFor="let subMenu of getSubModulesData" [class.active]="subMenu.subModule.moduleId === menu.module.id" 
+[routerLinkActive]="subMenu.subModule.subModuleLink !=='' ? '' : 'active'">
+<a  style="font-size:11.5px; color:black;" href="javascript:void(0)" 
+routerLink="/{{subMenu.subModule.subModuleLink}}" 
+[routerLinkActive]="subMenu.subModule.subModuleDesc !=='' ? '' : ['router-link-active']" 
+*ngIf="subMenu.subModule.moduleId === menu.module.id" >
+<!-- <span class="short-code">{{subMenu.shortCode}}</span> -->
+<b>{{subMenu.subModule.subModuleDesc}}</b>
+</a>
+</li>
+</ul>
+
+</span>     
+</li>
+
+<!-- <li [class.active]="showMenu === 'panel'" >
+<span >
+<a style="font-size:15px; color:black;" [routerLink]="" (click)="addExpandClass(1)" aria-expanded="true"  class="has-arrow">
+<span class="hide-menu"><b>Admin Board</b></span>
+</a>
+<ul aria-expanded="true" class="collapse" [class.in]="showMenu === 1">
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/get_serilog" 
+[routerLinkActive]="['router-link-active']">
+<b>Get Serilog</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/get_users" 
+[routerLinkActive]="['router-link-active']">
+<b>Get Users</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/create_roles" 
+[routerLinkActive]="['router-link-active']">
+<b>Add Roles</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/user_roles" 
+[routerLinkActive]="['router-link-active']">
+<b>User Roles</b>
+</a>
+</li>
+
+
+</ul>
+</span>     
+</li> -->
+
+<!-- <li >
+<span >
+<a style="font-size:15px; color:black;" [routerLink]="" (click)="addExpandClass(2)" aria-expanded="true"  class="has-arrow">
+<span class="hide-menu"><b>Setups</b></span>
+</a>
+<ul aria-expanded="true" class="collapse" [class.in]="showMenu === 2">
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/categories" 
+[routerLinkActive]="['router-link-active']">
+<b>Add Categories</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/inventories" 
+[routerLinkActive]="['router-link-active']">
+<b>Add Inventory Items</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/service_items" 
+[routerLinkActive]="['router-link-active']">
+<b>Add Service Items</b>
+</a>
+</li>
+
+
+</ul>
+</span>     
+</li> -->
+
+<!-- <li >
+<span >
+<a style="font-size:15px; color:black;" [routerLink]="" (click)="addExpandClass(3)" aria-expanded="true"  class="has-arrow">
+<span class="hide-menu"><b>WorkOrders</b></span>
+</a>
+<ul aria-expanded="true" class="collapse" [class.in]="showMenu === 3">
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/customers" 
+[routerLinkActive]="['router-link-active']">
+<b>Customers</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/workorders" 
+[routerLinkActive]="['router-link-active']">
+<b>WorkOrders</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/parts" 
+[routerLinkActive]="['router-link-active']">
+<b>Parts</b>
+</a>
+</li>
+
+<li >
+<a style="font-size:14px; color:black;" routerLink="/labors" 
+[routerLinkActive]="['router-link-active']">
+<b>Labors</b>
+</a>
+</li>
+
+</ul>
+</span>     
+</li> -->
+
+
+
+</ul>
+</nav> 
+

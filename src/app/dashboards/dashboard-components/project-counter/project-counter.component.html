@@ -1,0 +1,475 @@
+<div class="card-group m-b-30">
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+<!-- <h3 class="m-b-0 m-t-10"><i class="icon-screen-desktop text-danger"></i></h3> -->
+
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALCUSTOMER">
+<h1 class="text-right text-danger m-t-10">{{info.totalCustomers}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal()" title="Please click for Details">
+<b>Total Customers <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4> 
+
+<ngb-progressbar [showValue]="false" type="danger" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+<!-- Column -->
+<!-- Column -->
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+    <!-- <h3 class="m-b-0 m-t-10"><i class="icon-note text-megna"></i></h3> -->
+
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALPROJECT">
+<h1 class="text-right text-megna m-t-10">{{info.totalProject}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+    <!-- <h5 class="card-subtitle" style="color:black;"><b>Total Projects</b></h5> -->
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal1()" title="Please click for Details">
+<b>Total Projects <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4> 
+        
+<ngb-progressbar [showValue]="false" type="megna" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+<!-- Column -->
+<!-- Column -->
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+    <!-- <h3 class="m-b-0 m-t-10"><i class="icon-doc text-primary"></i></h3> -->
+
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALTEAMS">
+<h1 class="text-right text-primary m-t-10">{{info.totalTeams}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+<!-- <h5 class="card-subtitle" style="color:black;"><b>Total Teams</b></h5> -->
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal2()" title="Please click for Details">
+<b>Total Teams <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4> 
+
+<ngb-progressbar [showValue]="false" type="primary" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+<!-- Column -->
+<!-- Column -->
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+    <!-- <h3 class="m-b-0 m-t-10"><i class="icon-bag text-success"></i></h3> -->
+
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALEMPLOYEES">
+<h1 class="text-right text-success m-t-10">{{info.totalEmployees}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal3()" title="Please click for Details">
+<b>Total Employees <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4> 
+        
+<ngb-progressbar [showValue]="false" type="success" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+    <!-- <h3 class="m-b-0 m-t-10"><i class="icon-bag text-warning"></i></h3> -->
+
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALACTIVITIES">
+<h1 class="text-right text-warning m-t-10">{{info.totalActivities}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+    <!-- <h5 class="card-subtitle" style="color:black;"><b>Total Activities</b></h5> -->
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal4()" title="Please click for Details">
+<b>Total Activities <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4> 
+
+
+<ngb-progressbar [showValue]="false" type="warning" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+    
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-6">
+
+    <!-- <h3 class="m-b-0 m-t-10"><i class="icon-bag text-info"></i></h3> -->
+</div>
+<div class="col-6">
+<ng-container *ngFor="let info of getTOTALUSERS">
+<h1 class="text-right text-info m-t-10">{{info.totalUsers}}</h1>
+</ng-container>
+</div>
+<div class="col-12">
+
+<!-- <h5 class="card-subtitle" style="color:black;"><b>Total Users</b></h5> -->
+
+<h4 style="font-family:Calibri;color:black;" class="card-subtitle" (click)="openModal5()" 
+title="Please click for Details">
+<b>Total Users <i style="font-size:16px; width:20px;" class="fa fa-hand-pointer-o"></i>  </b></h4>         
+
+<ngb-progressbar [showValue]="false" type="info" [value]="50"></ngb-progressbar>
+</div>
+</div>
+</div>
+</div>
+    
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">Customer Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th >Customer Name</th>
+<th>Company Name</th>
+<th>Customer Desc</th>
+<th>Address</th>
+<th>Country</th>
+<th>Currency</th>
+<th>Email</th>
+<th>Mobile No</th>
+<th>Phone No</th>
+    
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getCustomersData">
+
+<td>{{info.customerName}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.customerDescription}}</td>
+<td>{{info.customerAddress}}</td>
+<td>{{info.country}}</td>
+<td>{{info.currency}}</td>
+<td>{{info.email}}</td>
+<td>{{info.mobile}}</td>
+<td>{{info.phone}}</td>
+    
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay1}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay1}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">Project Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled1()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Customer</th>
+<th>Project </th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getProjectData">
+
+<td>{{info.companyName}}</td>
+<td>{{info.projectDesc}}</td>
+    
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay2}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay2}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">Team Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled2()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Team Name</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getTeamsData">
+<td>{{info.teamDesc}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay3}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay3}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">Employee Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled3()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Joining Date</th>
+    <th>Department</th>
+    <th>Designation</th>
+    <th>Region</th>
+    <th>Gender</th>
+    <th>Id Card Number</th>
+    <th>Contact No</th>
+    <th>Phone No</th>
+    <th>Att Exempt</th>
+    <th>Full/Part Timer</th>
+    
+    <th>Email</th>
+    <th>Address</th>
+    <th>State</th>
+    <th>Zip Code</th>
+    <th>Work Location Address</th>
+    <th>Work Location State</th>
+    <th>Work Location ZipCode</th>
+    <th>Working Overtime</th>
+    
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getEmployeesData">
+
+<td>{{info.empName}}</td>
+<td>{{info.fatherName}}</td>
+<td>{{info.joiningDate}}</td>
+<td>{{info.department.departmentDesc}}</td>
+<td>{{info.designation.designationDesc}}</td>
+<td>{{info.region.regionDesc}}</td>
+<td>{{info.gender}}</td>
+<td>{{info.idCardNumber}}</td>
+<td>{{info.contactNo}}</td>
+<td>{{info.phoneNo}}</td>
+<td>{{info.attExempt}}</td>
+<td>{{info.fullPartTimer}}</td>
+
+<td>{{info.email}}</td>
+<td>{{info.address}}</td>
+<td>{{info.state}}</td>
+<td>{{info.zipCode}}</td>
+<td>{{info.workLocationAddress}}</td>
+<td>{{info.workLocationState}}</td>
+<td>{{info.workLocationZipCode}}</td>
+
+<td>{{info.workOvertime}}</td>
+    
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay4}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay4}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">Activities Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled4()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Project</th>
+<th>Activity Desc</th>
+<th>Start Time</th>
+<th>End Time</th>
+<th>Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getActivitiesData">
+
+<td>{{info.projectDesc}}</td>
+<td>{{info.activityDesc}}</td>
+<td>{{info.startTime}}</td>
+<td>{{info.endTime}}</td>
+<td>{{info.rate}}</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="backdrop" [ngStyle]="{'display':modeldisplay5}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':modeldisplay5}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h6 class="modal-title">User Details</h6>
+
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled5()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" >
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Role</th>
+<th>Email</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Contact No</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let info of getUsersData">
+
+<td>{{info.role.roleDesc}}</td>
+<td>{{info.email}}</td>
+<td>{{info.firstName}}</td>
+<td>{{info.lastName}}</td>
+<td>{{info.contactNo}}</td>
+<td>{{info.address}}</td>
+    
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>

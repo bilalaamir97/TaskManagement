@@ -1,0 +1,246 @@
+
+<div class="card" style="width: 18rem; background-color:#bdda95;">
+<div class="card-body">
+<h5 class="card-title">WorkOrders Summary</h5>
+<ng-container *ngFor="let info of getTOTALWORKORDER">
+<p class="card-text"><b>{{info.totalWorkOrder}} No.s</b></p>
+</ng-container>
+<button class="btn btn-secondary" (click)="openModal()">Details</button>
+</div>
+</div>
+
+<div [ngStyle]="{'display':display1}" >
+
+<br>
+
+<div style="border:1px black dotted; background-color:#bdda95;" >
+
+<h5 align="center">WorkOrder Details</h5>
+
+<table class="table " >
+
+<tr>
+<th>Order Datetime</th>
+<th>Description</th>
+<th>Total Amount</th>
+<th>Account Number</th>
+<th>Company</th>
+<th>Phone</th>
+<th>Address</th>
+
+</tr>
+<tr *ngFor="let info of getWORKORDERDETAILSAPI ">
+<td>{{info.orderDateTime}}</td>
+<td>{{info.description}}</td>
+<td>{{info.totalAmount}}</td>
+<td>{{info.accountNumber}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.phone}}</td>
+<td>{{info.address}}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+    
+<br>
+
+<div style="border:1px black dotted; background-color:azure;" class="table-responsive">
+
+<h5 align="center">Parts Sold Summary</h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Inv Item Code</th>
+<th>Inv Item Name</th>
+<th>Total Sold</th>
+<th>Details</th>
+
+</tr>
+<tr *ngFor="let info of getTOTALPARTSSOLD ">
+<td>{{info.inventoryItemCode}}</td>
+<td>{{info.inventoryItemName}}</td>
+<td>{{info.totalPartSold}}</td>
+<td><button class="btn btn-secondary" (click)="show_parts_sold_details(info.inventoryItemCode)" 
+(click)="openModal1()">Show Details</button></td>
+</tr>
+
+</table>
+
+</div>
+
+<div [ngStyle]="{'display':display2}" >
+
+<br>
+
+<div style="border:1px black dotted; background-color:azure;" class="table-responsive">
+
+<h5 align="center">Part Sales Detail</h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Description</th>
+<th>Order Datetime</th>
+<th>Quantity</th>
+<th>Unit Price</th>
+<th>Account Number</th>
+<th>Company</th>
+<th>Phone</th>
+<th>Address</th>
+
+</tr>
+<tr *ngFor="let info of getPARTSOLDDETAIL ">
+<td>{{info.description}}</td>
+<td>{{info.orderDateTime}}</td>
+<td>{{info.quantity}}</td>
+<td>{{info.unitPrice}}</td>
+<td>{{info.accountNumber}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.phone}}</td>
+<td>{{info.address}}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+    
+
+<br>
+
+<div style="border:1px black dotted; background-color: aliceblue ;" class="table-responsive">
+
+<h5 align="center">Labor Used Summary </h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Service Item Code</th>
+<th>Service Item Name</th>
+<th>Total Labour Hours</th>
+<th>Details</th>
+
+</tr>
+<tr *ngFor="let info of getTOTALLABORUSED ">
+<td>{{info.serviceItemCode}}</td>
+<td>{{info.serviceItemName}}</td>
+<td>{{info.totalLaborHours}}</td>
+<td><button class="btn btn-secondary" (click)="show_labor_used_details(info.serviceItemCode)" 
+(click)="openModal2()">Show Details</button></td>
+
+</tr>
+
+</table>
+
+</div>
+    
+<div [ngStyle]="{'display':display3}" >
+
+<br>
+
+<div style="border:1px black dotted; background-color:aliceblue;" class="table-responsive">
+
+<h5 align="center">Labor Used Detail</h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Description</th>
+<th>Order Datetime</th>
+<th>Labor Hours</th>
+<th>Rate</th>
+<th>Account Number</th>
+<th>Company</th>
+<th>Phone</th>
+<th>Address</th>
+
+</tr>
+<tr *ngFor="let info of getTOTALLABORUSEDDETAILS">
+<td>{{info.description}}</td>
+<td>{{info.orderDateTime}}</td>
+<td>{{info.laborHours}}</td>
+<td>{{info.rate}}</td>
+<td>{{info.accountNumber}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.phone}}</td>
+<td>{{info.address}}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+    
+<br>
+
+<div style="border:1px black dotted; background-color:beige;" class="table-responsive">
+
+<h5 align="center">Customer with Sales Summary</h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Customer Id</th>
+<th>Account Number</th>
+<th>Company Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Total WorkOrders</th>
+<th>Details</th>
+
+</tr>
+<tr *ngFor="let info of getTOTAL_CUSTOMERSALES ">
+<td>{{info.customerId}}</td>
+<td>{{info.accountNumber}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.phone}}</td>
+<td>{{info.address}}</td>
+<td>{{info.totalWorkOrder}}</td>
+<td><button class="btn btn-secondary" (click)="show_customer_sales_details(info.customerId)" 
+(click)="openModal3()">Show Details</button></td>
+</tr>
+
+</table>
+
+</div>
+
+<div [ngStyle]="{'display':display4}" >
+
+<br>
+
+<div style="border:1px black dotted; background-color:beige;" class="table-responsive">
+
+<h5 align="center">Customer Sales Detail</h5>
+
+<table class="table table-bordered display" >
+
+<tr>
+<th>Description</th>
+<th>Order Datetime</th>
+<th>Total Amount</th>
+
+</tr>
+<tr *ngFor="let info of getTOTALCUSTOMERSALESDETAILS ">
+<td>{{info.description}}</td>
+<td>{{info.orderDateTime}}</td>
+<td>{{info.totalAmount}}</td>
+
+</tr>
+        
+</table>
+
+</div>
+
+</div>
+
+<br><br>
+

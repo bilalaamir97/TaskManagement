@@ -1,0 +1,244 @@
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+  <br>
+
+<div class="row">
+
+<div class="col-lg-4">
+<label>Select Customer</label>
+
+<!--input list="names" name="names" required placeholder="Select Customer"
+class="form-control" [(ngModel)]="form.customer2" > 
+<datalist id="names" name="names" [(ngModel)]="form.customer2" >
+<option  *ngFor="let customer of getCustomerData" value="{{customer.id}}">
+{{customer.companyName}}</option>
+</datalist-->
+
+<select class="form-control" name="customer" required id="customer" [(ngModel)]="form.customer">
+<option *ngFor="let customer of getCustomerData" [value]="customer.id">
+{{customer.companyName}}</option>
+</select>
+
+<label>Order Datetime</label>
+<input
+type="date"
+class="form-control"
+id="order_datetime"
+name="order_datetime"
+required
+[(ngModel)]="form.order_datetime"
+/>
+<br><br>
+<button class="btn btn-info">
+Create WorkOrder
+</button>
+</div>
+
+<div class="col-lg-4">
+<label>Target Datetime</label>
+<input
+type="date"
+class="form-control"
+id="target_datetime"
+name="target_datetime"
+required
+[(ngModel)]="form.target_datetime"
+/>
+
+<label>DropDead DateTime</label>
+<input
+type="date"
+class="form-control"
+id="dead_time"
+name="dead_time"
+required
+[(ngModel)]="form.dead_time"
+/>
+</div>
+
+<div class="col-lg-4">
+<label>Description/Remarks</label>
+<input
+type="text"
+class="form-control"
+id="remarks"
+name="remarks"
+required
+[(ngModel)]="form.remarks"
+/>
+
+<label>Total Amount</label>
+<input
+type="number"
+min="1"
+class="form-control"
+id="total_amount"
+name="total_amount"
+required
+[(ngModel)]="form.total_amount"
+/>
+
+</div>
+
+</div>
+<br>
+
+</div>
+</form>
+
+
+<style>
+
+  </style>
+  <br>
+  <div style="background-color: white;" class="table-responsive">
+  <table class="table table-striped table-bordered display" >
+  <nav class="navbar" style="float: left;">
+  &nbsp;&nbsp;    
+  <label >Search : </label>&nbsp;&nbsp;&nbsp; 
+<input type="text" name="search" [(ngModel)]="form.search"
+style="width:175px; height:20px; font-size: 12px;" >      
+  </nav>
+  <tr>
+  <th>Id</th>
+  <th>Customer Id</th>
+  <th>Order Datetime</th>
+  <th>Target Datetime</th>
+  <th>DropDead Datetime</th>
+  <th>Description Remarks</th>
+  <th>Total</th>
+  <th>Edit</th>
+  <th>Delete</th>
+  
+  </tr>
+  <tr *ngFor="let info of getData | filter:form.search;">
+  <td>{{info.id}}</td>
+  <td>{{info.customerId}}</td>
+  <td>{{info.orderDateTime}}</td>
+  <td>{{info.targetDateTime}}</td>
+  <td>{{info.dropDeadDateTime}}</td>
+  <td>{{info.description}}</td>
+  <td>{{info.total}}</td>
+  <td><button class="btn btn-info" (click)="edit(info.id,info.customerId,info.orderDateTime,info.targetDateTime,info.dropDeadDateTime
+,info.description,info.total,info.rowVersion)" 
+(click)="openModal()">Edit</button></td>
+<td><button (click)="deleteData(info.id)" class="btn btn-info">Delete</button></td>
+    
+  </tr>
+  
+  </table>
+  
+  </div>
+  
+  
+  <div class="backdrop" [ngStyle]="{'display':display1}"></div>
+  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+  <div class="modal-dialog" role="document">
+  <div class="modal-content" style="width:600px;" >
+  <div class="modal-header" style="background-color:aliceblue;">
+  
+  <h4 class="modal-title">Edit WorkOrder</h4>
+  <button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+  <span aria-hidden="true">&times;</span></button>
+  </div>
+  
+  <form
+  name="form"
+  (ngSubmit)="edit_data()"
+  #f="ngForm"
+  novalidate
+  >
+  
+  <div class="modal-body" style="background-color:aliceblue;">
+  
+  <input type="hidden" id="id" name="id" [(ngModel)]="form.id"  />
+  <input type="hidden" id="rowVersion" name="rowVersion" [(ngModel)]="form.rowVersion"  />
+  
+  <div class="form-group">
+  
+  <label class="col-lg-5"> Customer<span style="color:red;">*</span></label>
+  
+    <select readonly class="form-control" name="customer" required id="customer" [(ngModel)]="form.customer">
+    <option *ngFor="let customer of getCustomerData" [value]="customer.id">
+    {{customer.companyName}}</option>
+    </select>
+
+  <label class="col-lg-5">Order Datetime<span style="color:red;">*</span></label>
+  
+  <input
+  type="date"
+  class="form-control"
+  id="order_datetime"
+  name="order_datetime"
+  required
+  [(ngModel)]="form.order_datetime"
+  />
+  
+  <label class="col-lg-5"> Target Datetime<span style="color:red;">*</span></label>
+  
+  <input
+  type="date"
+  class="form-control"
+  id="target_datetime"
+  name="target_datetime"
+  required
+  [(ngModel)]="form.target_datetime"
+  />
+
+  <label class="col-lg-5"> DropDead DateTime<span style="color:red;">*</span></label>
+  
+  <input
+type="date"
+class="form-control"
+id="dead_time"
+name="dead_time"
+required
+[(ngModel)]="form.dead_time"
+/>
+
+  <label class="col-lg-5"> Description/Remarks<span style="color:red;">*</span></label>
+  
+  <input
+  type="text"
+  class="form-control"
+  id="remarks"
+  name="remarks"
+  required
+  [(ngModel)]="form.remarks"
+  />
+  
+  <label class="col-lg-5"> Total Amount<span style="color:red;">*</span></label>
+  
+  <input
+  type="number"
+  min="1"
+  class="form-control"
+  id="total_amount"
+  name="total_amount"
+  required
+  [(ngModel)]="form.total_amount"
+  />
+    
+  </div>
+  </div>
+  
+  <div class="modal-footer" style="background-color:aliceblue;">
+  <button class="btn btn-info" type="submit"
+  (click)="onCloseHandled()"  
+  >Save</button>
+  </div>
+  
+  </form>
+  
+  </div>
+  </div>
+  </div>
+  
+  
+  

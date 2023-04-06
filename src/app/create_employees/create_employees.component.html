@@ -1,0 +1,318 @@
+<button class="btn btn-secondary" (click)="openModal10()">Add Record</button>
+
+<br><br>
+
+<div [ngStyle]="{'display':display10}" >
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+  <br>
+
+<div class="row">
+
+<div class="col-lg-4">
+
+<label>Employee Name</label>
+<input type="text" class="form-control" name="emp_name" required id="emp_name" [(ngModel)]="form.emp_name">
+
+<label>Select Department</label>
+
+<select class="form-control" name="department" required id="department" [(ngModel)]="form.department">
+<option *ngFor="let departments of getDepartmentsData" [value]="departments.id">
+{{departments.departmentDesc}}</option>
+</select>
+
+<label>Select Designation</label>
+
+<select class="form-control" name="designation" required id="designation" [(ngModel)]="form.designation">
+<option *ngFor="let designations of getDesignationsData" [value]="designations.id">
+{{designations.designationDesc}}</option>
+</select>
+
+<label>Select Region</label>
+
+<select class="form-control" name="region_id" required id="region_id" 
+[(ngModel)]="form.region_id">
+<option *ngFor="let regions of getRegionsData" [value]="regions.id">
+{{regions.regionDesc}}</option>
+</select>
+
+<label>Att Exempt</label>
+
+<select class="form-control" name="att_exempt" required id="att_exempt" [(ngModel)]="form.att_exempt">
+<option >Yes</option>
+<option >No</option>
+</select>
+
+<label>State</label>
+<input type="text" class="form-control" name="state" required id="state" [(ngModel)]="form.state">
+
+<label>Work Location State</label>
+<input type="text" class="form-control" name="work_location_state" required 
+id="work_location_state" [(ngModel)]="form.work_location_state">
+
+<br><br>
+<button class="btn btn-info">
+Create Employees
+</button>
+</div>
+
+<div class="col-lg-4">
+
+<label>Father Name</label>
+<input type="text" class="form-control" name="father_name" required id="father_name" [(ngModel)]="form.father_name">
+  
+<label>Gender</label>
+
+<select class="form-control" name="gender" required id="gender" [(ngModel)]="form.gender">
+<option >Male</option>
+<option >Female</option>
+</select>
+  
+<label>Full/Part Timer</label>
+
+<select class="form-control" name="full_part_timer" required id="full_part_timer" [(ngModel)]="form.full_part_timer">
+<option >Full Timer</option>
+<option >Part Timer</option>
+</select>
+
+<label>Email</label>
+<input type="text" class="form-control" name="email" required id="email" [(ngModel)]="form.email">
+
+<label>ZipCode</label>
+<input type="text" class="form-control" name="zip_code" required id="zip_code" 
+[(ngModel)]="form.zip_code">
+
+<label>Work Location Zip Code</label>
+<input type="text" class="form-control" name="work_location_zip_code" required 
+id="work_location_zip_code" [(ngModel)]="form.work_location_zip_code">
+
+</div>
+
+<div class="col-lg-4">
+
+<label>Joining Date</label>
+<input type="date" class="form-control" name="joining_date" required id="joining_date" [(ngModel)]="form.joining_date">
+
+<label>Id Card Number</label>
+<input type="text" class="form-control" name="id_card_number" required id="id_card_number" [(ngModel)]="form.id_card_number">
+
+<label>Phone No</label>
+<input type="text" class="form-control" name="phone_no" required id="phone_no" [(ngModel)]="form.phone_no">
+
+<label>Address</label>
+<input type="text" class="form-control" name="address" required id="address" 
+[(ngModel)]="form.address">
+
+<label>Work Location Address</label>
+<input type="text" class="form-control" name="work_location_address" required 
+id="work_location_address" [(ngModel)]="form.work_location_address">
+
+<label>Working Overtime</label>
+
+<select class="form-control" name="working_overtime" required id="working_overtime" 
+[(ngModel)]="form.working_overtime">
+<option>Yes</option>
+<option>No</option>
+</select>
+
+</div>
+
+</div>
+<br>
+
+</div>
+</form>
+
+</div>
+
+<style>
+
+</style>
+<br>
+
+<div style="background-color: white;" class="table-responsive" id="pdfTable" #pdfTable>
+<table class="table table-striped table-bordered display" id="contentToConvert">
+<nav class="navbar" style="float: left;">
+&nbsp;&nbsp;    
+<label >Search : </label>&nbsp;&nbsp;&nbsp; 
+<input type="text" name="search" [(ngModel)]="form.search"
+style="width:175px; height:20px; font-size: 12px;" >      
+<br>
+<!-- <input type="button" value="Create Report" class="btn btn-info" (click)="captureScreen()"/>   -->
+<button class="btn btn-secondary" (click)="downloadAsPDF()">Export To PDF</button>
+
+</nav>
+
+<tr>
+<th>Emp Name</th>
+<th>Father Name</th>
+<th>Joining Date</th>
+<th>Department</th>
+<th>Designation</th>
+<th>Region</th>
+<th>Gender</th>
+<th>Id Card Number</th>
+<th>Contact No</th>
+<th>Phone No</th>
+<th>Att Exempt</th>
+<th>Full/Part Timer</th>
+
+<th>Email</th>
+<th>Address</th>
+<th>State</th>
+<th>Zip Code</th>
+<th>Work Location Address</th>
+<th>Work Location State</th>
+<th>Work Location ZipCode</th>
+<th>Working Overtime</th>
+<!-- <th>Edit</th> -->
+<th>Delete</th>
+  
+</tr>
+<tr *ngFor="let info of getData | filter:form.search;">
+<td>{{info.empName}}</td>
+<td>{{info.fatherName}}</td>
+<td>{{info.joiningDate}}</td>
+<td>{{info.department.departmentDesc}}</td>
+<td>{{info.designation.designationDesc}}</td>
+<td>{{info.region.regionDesc}}</td>
+<td>{{info.gender}}</td>
+<td>{{info.idCardNumber}}</td>
+<td>{{info.contactNo}}</td>
+<td>{{info.phoneNo}}</td>
+<td>{{info.attExempt}}</td>
+<td>{{info.fullPartTimer}}</td>
+
+<td>{{info.email}}</td>
+<td>{{info.address}}</td>
+<td>{{info.state}}</td>
+<td>{{info.zipCode}}</td>
+<td>{{info.workLocationAddress}}</td>
+<td>{{info.workLocationState}}</td>
+<td>{{info.workLocationZipCode}}</td>
+
+<td>{{info.workOvertime}}</td>
+<!-- <td><button class="btn btn-info" (click)="edit(info.id,info.customerId,info.orderDateTime,info.targetDateTime,info.dropDeadDateTime
+,info.description,info.total,info.rowVersion)" 
+(click)="openModal()">Edit</button></td> -->
+<td><button (click)="deleteData(info.id)" class="btn btn-info">Delete</button></td>
+    
+  </tr>
+  
+  </table>
+  
+  </div>
+  
+  
+  <div class="backdrop" [ngStyle]="{'display':display1}"></div>
+  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+  <div class="modal-dialog" role="document">
+  <div class="modal-content" style="width:600px;" >
+  <div class="modal-header" style="background-color:aliceblue;">
+  
+  <h4 class="modal-title">Edit WorkOrder</h4>
+  <button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+  <span aria-hidden="true">&times;</span></button>
+  </div>
+  
+  <form
+  name="form"
+  (ngSubmit)="edit_data()"
+  #f="ngForm"
+  novalidate
+  >
+  
+  <div class="modal-body" style="background-color:aliceblue;">
+  
+  <input type="hidden" id="id" name="id" [(ngModel)]="form.id"  />
+  <input type="hidden" id="rowVersion" name="rowVersion" [(ngModel)]="form.rowVersion"  />
+  
+  <div class="form-group">
+  
+  <label class="col-lg-5"> Customer<span style="color:red;">*</span></label>
+  
+    <select readonly class="form-control" name="customer" required id="customer" [(ngModel)]="form.customer">
+    <option *ngFor="let customer of getCustomerData" [value]="customer.id">
+    {{customer.companyName}}</option>
+    </select>
+
+  <label class="col-lg-5">Order Datetime<span style="color:red;">*</span></label>
+  
+  <input
+  type="date"
+  class="form-control"
+  id="order_datetime"
+  name="order_datetime"
+  required
+  [(ngModel)]="form.order_datetime"
+  />
+  
+  <label class="col-lg-5"> Target Datetime<span style="color:red;">*</span></label>
+  
+  <input
+  type="date"
+  class="form-control"
+  id="target_datetime"
+  name="target_datetime"
+  required
+  [(ngModel)]="form.target_datetime"
+  />
+
+  <label class="col-lg-5"> DropDead DateTime<span style="color:red;">*</span></label>
+  
+  <input
+type="date"
+class="form-control"
+id="dead_time"
+name="dead_time"
+required
+[(ngModel)]="form.dead_time"
+/>
+
+  <label class="col-lg-5"> Description/Remarks<span style="color:red;">*</span></label>
+  
+  <input
+  type="text"
+  class="form-control"
+  id="remarks"
+  name="remarks"
+  required
+  [(ngModel)]="form.remarks"
+  />
+  
+  <label class="col-lg-5"> Total Amount<span style="color:red;">*</span></label>
+  
+  <input
+  type="number"
+  min="1"
+  class="form-control"
+  id="total_amount"
+  name="total_amount"
+  required
+  [(ngModel)]="form.total_amount"
+  />
+    
+  </div>
+  </div>
+  
+  <div class="modal-footer" style="background-color:aliceblue;">
+  <button class="btn btn-info" type="submit"
+  (click)="onCloseHandled()"  
+  >Save</button>
+  </div>
+  
+  </form>
+  
+  </div>
+  </div>
+  </div>
+  
+  
+  

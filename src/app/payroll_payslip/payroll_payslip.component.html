@@ -1,0 +1,46 @@
+<div class="container">
+</div>
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+
+<br>
+<div class="row">
+
+<div class="col-lg-4">
+
+<label>Select Month</label>
+<input
+type="month"
+class="form-control"
+id="month"
+name="month"
+required
+[(ngModel)]="form.month" />
+
+<br><br>
+<a href="http://localhost:82/task_reports/payroll_payslips" target="_blank">
+<button class="btn btn-info" type="button" (click)="onSubmit()">
+Show Report
+</button></a>
+</div>
+
+<div class="col-lg-4">
+    
+</div>
+
+<div class="col-lg-4">
+
+</div>
+
+</div>
+<br>
+</div>
+</form>
+

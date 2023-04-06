@@ -1,0 +1,229 @@
+<div class="container">
+</div>
+
+<button class="btn btn-secondary" (click)="openModal10()">Add Record</button>
+
+<br><br>
+
+<div [ngStyle]="{'display':display10}" >
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+
+<br>
+<div class="row">
+
+<div class="col-lg-4">
+
+<label>Select Customer</label>
+<select class="form-control" name="customer_id" required id="customer_id" 
+[(ngModel)]="form.customer_id"
+(change)="selectProjects()">
+<ng-container *ngFor="let customers of getCustomersData" >
+<option [value]="customers.id">{{customers.companyName}}</option>
+</ng-container>
+</select>
+
+<label>Select Team</label>
+<select class="form-control" name="team_id" required id="team_id" 
+[(ngModel)]="form.team_id" >
+<ng-container *ngFor="let teams of getTeamsData" >
+<option [value]="teams.id">{{teams.teamDesc}}</option>
+</ng-container>
+</select>
+
+<label>Task Desc</label>
+<input type="text" class="form-control" name="task_desc" required id="task_desc" 
+[(ngModel)]="form.task_desc" >
+
+<label>Time Estimation In Hours</label>
+<input type="number" class="form-control" name="time_estimation" required id="time_estimation" 
+[(ngModel)]="form.time_estimation" >
+
+
+<br><br>
+<button class="btn btn-info">
+Create Record
+</button>
+</div>
+
+<div class="col-lg-4">
+
+<label>Select Project</label>
+
+<select class="form-control" name="project_id" required id="project_id" 
+[(ngModel)]="form.project_id" >
+<ng-container *ngFor="let projects of getProjectsData" >
+<option [value]="projects.id">{{projects.projectDesc}}</option>
+</ng-container>
+</select>
+
+<label>Select Employees</label>
+
+<select class="form-control" name="employee_id" required id="employee_id" 
+[(ngModel)]="form.employee_id" >
+<ng-container *ngFor="let employees of getEmployeesData" >
+<option [value]="employees.id">{{employees.empName}}</option>
+</ng-container>
+</select>
+
+<label>Start DateTime</label>
+<input type="datetime-local" class="form-control" name="start_datetime" required id="start_datetime" 
+[(ngModel)]="form.start_datetime" >
+
+
+</div>
+
+<div class="col-lg-4">
+
+<label>Select Activities</label>
+<select class="form-control" name="activity_id" required id="activity_id" 
+[(ngModel)]="form.activity_id" >
+<ng-container *ngFor="let activities of getActivitiesData" >
+<option [value]="activities.id">{{activities.activityDesc}}</option>
+</ng-container>
+</select>
+    
+<label>Task Title</label>
+<input type="text" class="form-control" name="task_title" required id="task_title" 
+[(ngModel)]="form.task_title" >
+
+<label>End DateTime</label>
+<input type="datetime-local" class="form-control" name="end_datetime" required id="end_datetime" 
+[(ngModel)]="form.end_datetime" >
+
+
+</div>
+
+</div>
+<br>
+</div>
+</form>
+
+</div>
+
+
+<style>
+
+</style>
+<br>
+<div style="background-color: white;" class="table-responsive">
+<table class="table table-striped table-bordered display" >
+<nav class="navbar" style="float: left;">
+&nbsp;&nbsp;    
+<label >Search : </label>&nbsp;&nbsp;&nbsp; 
+<input type="text" name="search" [(ngModel)]="form.search"
+style="width:175px; height:20px; font-size: 12px;" >      
+</nav>
+<tr>
+<th>Employee</th>
+<th>Activity</th>
+<th>Task Title</th>
+<th>Task Desc</th>
+<th>Start DateTime</th>
+<th>End DateTime</th>
+<th>Time Estimation In Hours</th>
+<th>Started</th>
+<th>Started Time</th>
+<th>Closed</th>
+<th>Closed Time</th>
+<th>Completed</th>
+<th>Abandoned</th>
+
+<th>Delete</th>
+
+</tr>
+<tr *ngFor="let info of getData | filter:form.search;">
+
+<td>{{info.empName}}</td>
+<td>{{info.activityDesc}}</td>
+<td>{{info.taskTitle}}</td>
+<td>{{info.taskDescription}}</td>
+<td>{{info.startDateTime}}</td>
+<td>{{info.endDateTime}}</td>
+<td>{{info.timeEstimationHours}}</td>
+
+<td>{{info.started}}</td>
+<td>{{info.startedTime}}</td>
+<td>{{info.closed}}</td>
+<td>{{info.closedTime}}</td>
+<td>{{info.completed}}</td>
+<td>{{info.abandoned}}</td>
+
+
+<!-- <td>{{info.serviceItemName}}</td>
+<td>{{info.rate}}</td> -->
+
+<td><button (click)="deleteData(info.id)" class="btn btn-secondary">Delete</button></td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="backdrop" [ngStyle]="{'display':display1}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h4 class="modal-title">Edit Activities</h4>
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+
+<form
+name="form"
+(ngSubmit)="edit_data()"
+#f="ngForm"
+novalidate
+>
+
+<div class="modal-body" >
+
+<input type="hidden" id="id" name="id" [(ngModel)]="form.id"  />
+<input type="hidden" id="rowVersion" name="rowVersion" [(ngModel)]="form.rowVersion"  />
+<input type="hidden" id="project_id" name="project_id" [(ngModel)]="form.project_id"  />
+
+<div class="form-group">
+
+<label>Activity Desc</label>
+
+<input
+type="text"
+class="form-control"
+id="activities_name"
+name="activities_name"
+required
+[(ngModel)]="form.activities_name" />
+
+<label>Start Time</label>
+<input type="time" class="form-control" name="start_time" required id="start_time" 
+[(ngModel)]="form.start_time" >
+
+<label>End Time</label>
+<input type="time" class="form-control" name="end_time" required id="end_time" 
+[(ngModel)]="form.end_time" >
+
+</div>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-secondary" type="submit"
+(click)="onCloseHandled()"  
+>Save</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>

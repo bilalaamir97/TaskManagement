@@ -1,0 +1,283 @@
+<div class="row">
+
+<div class="col-md-6">
+<div class="card">
+<div class="card-body">
+<ngb-tabset>
+<ngb-tab title="My Team">
+<ng-template ngbTabContent>
+<div class="p-t-20">
+
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Emp Name</th>
+<th>Division</th>
+<th>Region</th>
+<th>Department</th>
+<th>Designation</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let data of my_team">
+<td>{{data.EMP_NAME}}</td>
+<td>{{data.DIVISION}}</td>
+<td>{{data.REGION}}</td>
+<td>{{data.DEPARTMENT}}</td>
+<td>{{data.DESIGNATION}}</td>
+<td>{{data.TYPE}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+                
+
+</div>
+</ng-template>
+</ngb-tab>
+<ngb-tab>
+<ng-template ngbTabTitle><b>My Manager</b></ng-template>
+<ng-template ngbTabContent>
+<div class="p-t-20">
+
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Emp Name</th>
+<th>Division</th>
+<th>Region</th>
+<th>Department</th>
+<th>Designation</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let data of my_manager">
+<td>{{data.EMP_NAME}}</td>
+<td>{{data.DIVISION}}</td>
+<td>{{data.REGION}}</td>
+<td>{{data.DEPARTMENT}}</td>
+<td>{{data.DESIGNATION}}</td>
+<td>{{data.TYPE}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+                
+
+</div>
+</ng-template>
+</ngb-tab>
+
+</ngb-tabset>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card">
+<div class="card-body">
+<ngb-tabset>
+<ngb-tab title="My Requests">
+<ng-template ngbTabContent>
+<div class="p-t-20">
+
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Apply Date</th>
+<th>Emp Name</th>
+<th>Leave Type</th>
+<th>From Date</th>
+<th>To Date</th>
+<th>Reason</th>
+<th>Approved</th>
+<th>Cancelled</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let tabledata of my_leaves">
+<td class="center" >{{tabledata.APPLICATION_DATE}}</td>
+<td class="center" >{{tabledata.EMP_NAME}}</td>
+<td class="center" >{{tabledata.DESCRIPTION}}</td>
+<td class="center" >{{tabledata.FROM_DATE}}</td>
+<td class="center" >{{tabledata.TO_DATE}}</td>
+<td class="center" >{{tabledata.REASON}}</td>
+<td class="center" >{{tabledata.POST}}</td>
+<td class="center" >{{tabledata.CANCEL}}</td>
+        
+</tr>
+</tbody>
+</table>
+</div>
+                
+
+</div>
+</ng-template>
+</ngb-tab>
+<ngb-tab>
+<ng-template ngbTabTitle><b>My Approvals</b></ng-template>
+<ng-template ngbTabContent>
+<div class="p-t-20">
+
+<style>
+th,td{
+font-size:12px; 
+}
+</style>
+<div class="table-responsive" style="height:400px;">	
+<table class="table table-hover earning-box">
+<thead>
+<tr>
+<th>Apply Date</th>
+<th>Emp Name</th>
+<th>Leave Type</th>
+<th>From Date</th>
+<th>To Date</th>
+<th>Reason</th>
+<th>Approved</th>
+<th>Cancelled</th>
+<th>Cancel</th>  
+<th>Approve</th>  
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let tabledata of my_approvals">
+<td class="center" >{{tabledata.APPLICATION_DATE}}</td>
+<td class="center" >{{tabledata.EMP_NAME}}</td>
+<td class="center" >{{tabledata.DESCRIPTION}}</td>
+<td class="center" >{{tabledata.FROM_DATE}}</td>
+<td class="center" >{{tabledata.TO_DATE}}</td>
+<td class="center" >{{tabledata.REASON}}</td>
+<td class="center" >{{tabledata.POST}}</td>
+<td class="center" >{{tabledata.CANCEL}}</td>
+
+<td class="center" *ngIf="tabledata.POST === 'N' && tabledata.CANCEL === 'N' " > <button class="btn btn-info" style="font-size:11px;" 
+(click)="cancel(tabledata.TRNO)">
+Cancel</button>   
+<td class="center" *ngIf="tabledata.POST === 'Y' || tabledata.CANCEL === 'Y'" > <button class="btn btn-info" style="font-size:11px;" disabled
+(click)="cancel(tabledata.TRNO)">
+Cancel</button>   
+</td>
+
+<td class="center" *ngIf="tabledata.POST === 'N' && tabledata.CANCEL === 'N'" > <button class="btn btn-info" style="font-size:11px;" 
+(click)="approve(tabledata.TRNO)">
+Approve</button>   
+<td class="center" *ngIf="tabledata.POST === 'Y' || tabledata.CANCEL === 'Y'" > <button class="btn btn-info" style="font-size:11px;" disabled
+(click)="approve(tabledata.TRNO)">
+Approve</button>   
+</td>
+    
+
+</tr>
+</tbody>
+</table>
+</div>
+                
+
+</div>
+</ng-template>
+</ngb-tab>
+
+</ngb-tabset>
+</div>
+</div>
+</div>
+        
+
+</div>
+
+
+
+<div class="backdrop" [ngStyle]="{'display':display1}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:400px;" >
+<div class="modal-header">
+
+<h4 class="modal-title">Edit Leave Request</h4>
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+<form #editform="ngForm">
+<div class="modal-body" >
+
+<input type="hidden" id="edit_id" name="edit_id" [(ngModel)]="ng_edit_id" />
+
+<div class="form-group">
+
+<label class="col-lg-5"> Application Date<span style="color:red;">*</span></label>
+
+<input type="date" id="app_date" name="app_date" required [(ngModel)]="ng_appdate" 
+style="width: 175px; height: 20px; font-size: 12px" >
+
+
+<label class="col-lg-5">From Date<span style="color:red;">*</span></label>
+
+<input type="date" id="from_date" name="from_date" required [(ngModel)]="ng_fromdate" 
+style="width: 175px; height: 20px; font-size: 12px" >
+
+
+<label class="col-lg-5">To Date<span style="color:red;">*</span></label>
+
+<input type="date" id="to_date" name="to_date" required [(ngModel)]="todate" 
+style="width: 175px; height: 20px; font-size: 12px" >
+
+<label class="col-lg-5">Employee<span style="color:red;">*</span></label>
+
+<select id="employee" name="employee" required [(ngModel)]="ng_employee" 
+style="width: 175px; height: 20px; font-size: 12px" >
+<option *ngFor="let employee of employees" [value]="employee.EMP_ID">{{employee.EMP_NAME}}</option>
+</select>
+
+<label class="col-lg-5">Leave Type<span style="color:red;">*</span></label>
+
+<select id="leavetype" name="leavetype" required [(ngModel)]="ng_leavetype" 
+style="width: 175px; height: 20px; font-size: 12px" >
+<option *ngFor="let leave of leaves" [value]="leave.LEAVE_TYPE_ID">{{leave.DESCRIPTION}}</option>
+</select>
+
+<label class="col-lg-5">Reason<span style="color:red;">*</span></label>
+
+<input type="text" id="reason" name="reason" required [(ngModel)]="ng_reason" 
+style="width: 175px; height: 20px; font-size: 12px" >
+
+
+
+
+</div>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-default" type="submit" [disabled]="!editform.valid"
+(click)="edit_data()" (click)="onCloseHandled()"  
+>Save</button>
+</div>
+
+</form>
+
+
+</div>
+</div>
+</div>
+
+

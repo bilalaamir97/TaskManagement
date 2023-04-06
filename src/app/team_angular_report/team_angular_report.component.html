@@ -1,0 +1,48 @@
+
+<div style="background-color: white;" class="table-responsive" id="pdfTable" #pdfTable>
+<table class="table table-striped table-bordered display" id="contentToConvert">
+<nav class="navbar" style="float: left;">
+&nbsp;&nbsp;    
+
+<button class="btn btn-secondary" (click)="downloadAsPDF()">Export To PDF</button>
+
+</nav>
+
+<tr>
+<th colspan="4">Team Desc</th>
+  
+</tr>
+
+<ng-container *ngFor="let info of getData; let i = index;">
+
+<tr style="font-weight: bold; " >
+
+<td colspan="4">{{i + 1}} - {{info.teamDesc}}</td>
+
+</tr>
+
+<thead>
+<tr>
+<th colspan="2">Emp Name</th>
+<th colspan="2">Is Team Leader</th>
+</tr>
+</thead>
+
+<tbody>
+  
+<ng-container *ngFor="let tabledata of getDetailData; let a = index;" class='showme'  >
+
+<tr *ngIf="info.id === tabledata.teamId" >
+<td colspan="2" class="center" >{{a + 1}} - {{tabledata.empName}}</td>
+<td colspan="2" class="center" >{{tabledata.isTeamLeader}}</td>
+</tr>
+</ng-container>
+
+</tbody>
+
+</ng-container>
+
+</table>
+
+</div>
+

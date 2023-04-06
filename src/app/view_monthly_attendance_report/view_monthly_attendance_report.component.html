@@ -1,0 +1,64 @@
+<div class="container">
+</div>
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+
+<br>
+<div class="row">
+
+<div class="col-lg-4">
+
+<label>Select Team</label>
+
+<select class="form-control" name="teams" required id="teams" [(ngModel)]="form.teams">
+<option value="0">Select All</option>
+<ng-container *ngFor="let teams of getTeamsData" >
+<option [value]="teams.id">{{teams.teamDesc}}</option>
+</ng-container>
+</select>
+
+<br><br>
+<a href="http://localhost:82/task_reports/daily_att_report" target="_blank">
+<button class="btn btn-info" type="button" (click)="onSubmit()">
+Show Report
+</button></a>
+</div>
+
+<div class="col-lg-4">
+
+<label>Select From Date</label>
+<input
+type="date"
+class="form-control"
+id="from_date"
+name="from_date"
+required
+[(ngModel)]="form.from_date" />
+    
+</div>
+
+<div class="col-lg-4">
+
+<label>Select To Date</label>
+<input
+type="date"
+class="form-control"
+id="to_date"
+name="to_date"
+required
+[(ngModel)]="form.to_date" />
+
+</div>
+
+</div>
+<br>
+</div>
+</form>
+

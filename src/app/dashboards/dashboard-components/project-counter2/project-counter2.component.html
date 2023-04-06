@@ -1,0 +1,291 @@
+
+
+<!-----------------Employee Dashboard Starts-------------->    
+
+<div class="card-group m-b-10">
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-6">
+    <h3 class="m-b-0 m-t-12"><i class="icon-screen-desktop text-info"></i></h3>
+    </div>
+    <div class="col-6">
+    <h3 class="text-right text-info m-t-10"><b>{{total_emp}}</b></h3>
+    </div>
+    <div class="col-12">
+    <h4 style="font-family:Calibri;" class="card-subtitle" (click)="openModal()" title="Please click for Details">
+    <b>Total Employees</b></h4> 
+    <ngb-progressbar [showValue]="false" type="info" [value]="100"></ngb-progressbar>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-6">
+    <h3 class="m-b-0 m-t-12"><i class="icon-note text-megna"></i></h3>
+    </div>
+    <div class="col-6">
+    <h3 class="text-right text-megna m-t-10"><b>{{presents}}</b></h3>
+    </div>
+    <div class="col-12">
+    <h4 style="font-family:Calibri;" (click)="openModal1()" class="card-subtitle">
+    <b>No Of Present</b></h4>
+    <ngb-progressbar [showValue]="false" type="megna" [value]="100"></ngb-progressbar>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-6">
+    <h3 class="m-b-0 m-t-12"><i class="icon-doc text-primary"></i></h3>
+    </div>
+    <div class="col-6">
+    <h3 class="text-right text-primary m-t-10"><b>{{no_of_late}}</b></h3>
+    </div>
+    <div class="col-12">
+    <h4 style="font-family:Calibri;" (click)="openModal2()" class="card-subtitle"><b>No Of Late</b></h4>
+    <ngb-progressbar [showValue]="false" type="primary" [value]="100"></ngb-progressbar>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-6">
+    <h3 class="m-b-0 m-t-12"><i class="icon-bag text-success"></i></h3>
+    </div>
+    <div class="col-6">
+    <h3 class="text-right text-success m-t-10"><b>{{no_of_leaves}}</b></h3>
+    </div>
+    <div class="col-12">
+    <h4 style="font-family:Calibri;" (click)="openModal3()" class="card-subtitle"><b>No Of Leaves</b></h4>
+    <ngb-progressbar [showValue]="false" type="success" [value]="100"></ngb-progressbar>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-6">
+    <h3 class="m-b-0 m-t-12"><i class="icon-trash text-danger"></i></h3>
+    </div>
+    <div class="col-6">
+    <h3 class="text-right text-danger m-t-10"><b>{{no_of_non_reported}}</b></h3>
+    </div>
+    <div class="col-12">
+    <h4 style="font-family:Calibri;" (click)="openModal4()" class="card-subtitle"><b>No Of Not Reported</b></h4>
+    <ngb-progressbar [showValue]="false" type="danger" [value]="100"></ngb-progressbar>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="backdrop" [ngStyle]="{'display':display1}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:600px;" >
+    <div class="modal-header">
+    <h6 class="modal-title">No Of Present Details</h6>
+    <button class="close" type="button" aria-label="Close" (click)="onCloseHandled1()" >
+    <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" >
+    <style>
+    th,td{
+    font-size:12px;
+    }
+    </style>
+    <div class="table-responsive" style="height:400px;">	
+    <table class="table table-hover earning-box">
+    <thead>
+    <tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Contact No</th>
+    <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of present_data">
+    <td><a target="_blank" routerLink="/employeeprofile/{{data.EMP_ID}}">{{data.EMP_NAME}}</a></td>
+    <td>{{data.EMP_FATHER_NAME}}</td>
+    <td>{{data.CONTACT_NO}}</td>
+    <td>{{data.EMAIL}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="backdrop" [ngStyle]="{'display':display2}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display2}" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:600px;" >
+    <div class="modal-header">
+    <h6 class="modal-title">No Of Late Details</h6>
+    <button class="close" type="button" aria-label="Close" (click)="onCloseHandled2()" >
+    <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" >
+    <style>
+    th,td{
+    font-size:12px;
+    }
+    </style>
+    <div class="table-responsive" style="height:400px;">	
+    <table class="table table-hover earning-box">
+    <thead>
+    <tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Contact No</th>
+    <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of late_data">
+    <td><a target="_blank" routerLink="/employeeprofile/{{data.EMP_ID}}">{{data.EMP_NAME}}</a></td>
+    <td>{{data.EMP_FATHER_NAME}}</td>
+    <td>{{data.CONTACT_NO}}</td>
+    <td>{{data.EMAIL}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="backdrop" [ngStyle]="{'display':display3}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:600px;" >
+    <div class="modal-header">
+    <h6 class="modal-title">No Of Leaves Details</h6>
+    <button class="close" type="button" aria-label="Close" (click)="onCloseHandled3()" >
+    <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" >
+    <style>
+    th,td{
+    font-size:12px;
+    }
+    </style>
+    <div class="table-responsive" style="height:400px;">	
+    <table class="table table-hover earning-box">
+    <thead>
+    <tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Contact No</th>
+    <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of leaves_data">
+    <td><a target="_blank" routerLink="/employeeprofile/{{data.EMP_ID}}">{{data.EMP_NAME}}</a></td>
+    <td>{{data.EMP_FATHER_NAME}}</td>
+    <td>{{data.CONTACT_NO}}</td>
+    <td>{{data.EMAIL}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="backdrop" [ngStyle]="{'display':display4}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display4}" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:600px;" >
+    <div class="modal-header">
+    <h6 class="modal-title">No Of Not Reported Details</h6>
+    <button class="close" type="button" aria-label="Close" (click)="onCloseHandled4()" >
+    <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" >
+    <style>
+    th,td{
+    font-size:12px;
+    }
+    </style>
+    <div class="table-responsive" style="height:400px;">	
+    <table class="table table-hover earning-box">
+    <thead>
+    <tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Contact No</th>
+    <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of non_report_data">
+    <td><a target="_blank" routerLink="/employeeprofile/{{data.EMP_ID}}">{{data.EMP_NAME}}</a></td>
+    <td>{{data.EMP_FATHER_NAME}}</td>
+    <td>{{data.CONTACT_NO}}</td>
+    <td>{{data.EMAIL}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="backdrop" [ngStyle]="{'display':display}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:600px;" >
+    <div class="modal-header">
+    <h6 class="modal-title">Total Employee Details</h6>
+    <button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+    <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" >
+    <style>
+    th,td{
+    font-size:12px; 
+    }
+    </style>
+    <div class="table-responsive" style="height:400px;">	
+    <table class="table table-hover earning-box">
+    <thead>
+    <tr>
+    <th>Emp Name</th>
+    <th>Father Name</th>
+    <th>Contact No</th>
+    <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of emp_data">
+    <td><a target="_blank" routerLink="/employeeprofile/{{data.EMP_ID}}">{{data.EMP_NAME}}</a></td>
+    <td>{{data.EMP_FATHER_NAME}}</td>
+    <td>{{data.CONTACT_NO}}</td>
+    <td>{{data.EMAIL}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+ <!---------------Employee Dashboard Ends---------------->   

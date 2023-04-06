@@ -1,0 +1,122 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        </div>
+
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input
+            type="first_name"
+            class="form-control"
+            name="first_name"
+            [(ngModel)]="form.first_name"
+            required
+            first_name
+            #first_name="ngModel"
+          />
+          <div class="alert-danger" *ngIf="first_name.errors && f.submitted">
+            
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input
+            type="last_name"
+            class="form-control"
+            name="last_name"
+            [(ngModel)]="form.last_name"
+            required
+            last_name
+            #last_name="ngModel"
+          />
+          <div class="alert-danger" *ngIf="last_name.errors && f.submitted">
+            
+          </div>
+        </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input
+                type="address"
+                class="form-control"
+                name="address"
+                [(ngModel)]="form.address"
+                required
+                address
+                #address="ngModel"
+              />
+              <div class="alert-danger" *ngIf="address.errors && f.submitted">
+
+              </div>
+            </div>
+            
+                <div class="form-group">
+                  <label for="contact_no">Contact No</label>
+                  <input
+                    type="contact_no"
+                    class="form-control"
+                    name="contact_no"
+                    [(ngModel)]="form.contact_no"
+                    required
+                    contact_no
+                    #contact_no="ngModel"
+                  />
+                  <div class="alert-danger" *ngIf="contact_no.errors && f.submitted">
+
+
+          </div>
+        </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div>

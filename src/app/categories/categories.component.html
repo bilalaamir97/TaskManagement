@@ -1,0 +1,342 @@
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+    <br>
+<div class="row">
+
+<div class="col-lg-4">
+<label>Select Parent Category</label>
+
+<select class="form-control" name="parent_category" required id="parent_category" [(ngModel)]="form.parent_category"
+(change)="showSubCategory()">
+<ng-container *ngFor="let category of getData" >
+<option *ngIf="category.parentId == null" [value]="category.id">{{category.categoryName}}</option>
+</ng-container>
+</select>
+
+<br><br>
+
+<button class="btn btn-info" type="button" (click)="openModalParent()">Add Parent Category</button>
+
+
+</div>
+
+<div class="col-lg-4">
+
+<label>Select Sub Category</label>
+
+<select class="form-control" name="sub_category" required id="sub_category" [(ngModel)]="form.sub_category">
+<ng-container *ngFor="let category of getData" >
+<option *ngIf="category.parentId == form.parent_category" [value]="category.id">{{category.categoryName}}</option>
+</ng-container>
+</select>
+
+<br><br>
+<button class="btn btn-info" type="button" (click)="openModalSub()">Add Sub Category</button>
+
+</div>
+
+<div class="col-lg-4">
+
+<label>Child Category</label>
+
+<input
+type="text"
+class="form-control"
+id="category_desc"
+name="category_desc"
+required
+[(ngModel)]="form.category_desc"
+/>
+<br><br>
+<button class="btn btn-info">Add Child Category</button>
+
+</div>
+
+</div>
+<br>
+</div>
+</form>
+
+<nav class="sidebar-nav">
+<ul id="sidebarnav">
+<ng-container *ngFor="let parent_category of getData; let i= index;">
+<li *ngIf="parent_category.parentId == null"  [class.active]="showMenu === 'panel'"  >
+<span class="hide-menu"><b>{{parent_category.categoryName}} </b></span>
+
+<ul id="sidebarnav">
+<ng-container *ngFor="let child_category of getChildData let i= index;">
+<li *ngIf="child_category.parentId === parent_category.id" >
+<span  class="hide-menu">
+<b>{{child_category.categoryName}}</b></span>
+
+<ul id="sidebarnav">
+<ng-container *ngFor="let sub_category of getSubData let i= index;">
+<li *ngIf="sub_category.parentId === child_category.id" >
+<span  class="hide-menu">
+<b>{{sub_category.categoryName}}</b></span>
+</li>
+</ng-container>    
+</ul>
+    
+
+</li>
+</ng-container>    
+</ul>
+
+</li>
+</ng-container>    
+</ul>
+</nav> 
+
+<!-- <style>
+
+</style>
+<br>
+<div style="background-color: white;" class="table-responsive">
+<table class="table table-striped table-bordered display" >
+<nav class="navbar" style="float: left;">
+&nbsp;&nbsp;    
+<label >Search : </label>&nbsp;&nbsp;&nbsp; 
+<input type="text" name="search" 
+style="width:175px; height:20px; font-size: 12px;" >      
+</nav>
+<tr>
+<th>Id</th>
+<th>Account Number</th>
+<th>Company Name</th>
+<th>Address</th>
+<th>City</th>
+<th>State</th>
+<th>Zip Code</th>
+<th>Phone</th>
+<th>Edit</th>
+<th>Delete</th>
+
+</tr>
+<tr *ngFor="let info of getData">
+<td>{{info.id}}</td>
+<td>{{info.accountNumber}}</td>
+<td>{{info.companyName}}</td>
+<td>{{info.address}}</td>
+<td>{{info.city}}</td>
+<td>{{info.state}}</td>
+<td>{{info.zipCode}}</td>
+<td>{{info.phone}}</td>
+<td><button class="btn btn-secondary" (click)="edit(info.id,info.accountNumber,info.companyName,info.address,info.city,info.state,
+info.zipCode,info.phone)" 
+(click)="openModal()">Edit</button></td>
+<td><button (click)="deleteData(info.id)" class="btn btn-secondary">Delete</button></td>
+
+</tr>
+
+</table>
+
+</div> -->
+
+<!-----------------------------------------------------Sub Category Modal------------------------>
+
+<div class="backdrop" [ngStyle]="{'display':subdisplay}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':subdisplay}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h4 class="modal-title">Add Sub Category </h4>
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandledSub()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+
+<form
+name="form"
+(ngSubmit)="add_sub_category()"
+#f="ngForm"
+novalidate
+>
+
+<div class="modal-body" >
+
+<div class="form-group">
+
+<label>Select Parent Category</label>
+
+<select class="form-control" name="parent_category" required id="parent_category" [(ngModel)]="form.parent_category">
+<ng-container *ngFor="let category of getData" >
+<option *ngIf="category.parentId == null" [value]="category.id">{{category.categoryName}}</option>
+</ng-container>
+</select>
+    
+<label>Enter Sub Category</label>
+
+<input
+type="text"
+class="form-control"
+id="category_desc"
+name="category_desc"
+required
+[(ngModel)]="form.category_desc"
+/>
+
+</div>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-secondary" type="submit"
+(click)="onCloseHandledSub()"  
+>Save</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+<!------------------------------------------------------Sub Category Modal End-->
+
+
+<!-----------------------------------------------------Parent Category Modal------------------------>
+
+<div class="backdrop" [ngStyle]="{'display':parentdisplay}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':parentdisplay}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h4 class="modal-title">Add Parent </h4>
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandledParent()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+
+<form
+name="form"
+(ngSubmit)="add_parent_category()"
+#f="ngForm"
+novalidate
+>
+
+<div class="modal-body" >
+
+<div class="form-group">
+
+<label>Enter Parent Category</label>
+
+<input
+type="text"
+class="form-control"
+id="category_desc"
+name="category_desc"
+required
+[(ngModel)]="form.category_desc"
+/>
+
+</div>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-secondary" type="submit"
+(click)="onCloseHandledParent()"  
+>Save</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<!------------------------------------------------------Parent Category Modal End-->
+
+<div class="backdrop" [ngStyle]="{'display':display1}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}" >
+<div class="modal-dialog" role="document">
+<div class="modal-content" style="width:600px;" >
+<div class="modal-header">
+
+<h4 class="modal-title">Edit Customer</h4>
+<button class="close" type="button" aria-label="Close" (click)="onCloseHandled()" >
+<span aria-hidden="true">&times;</span></button>
+</div>
+
+<form
+name="form"
+(ngSubmit)="edit_data()"
+#f="ngForm"
+novalidate
+>
+
+<div class="modal-body" >
+
+<input type="hidden" id="id" name="id" [(ngModel)]="form.id"  />
+
+<div class="form-group">
+
+<label class="col-lg-5"> Account Number<span style="color:red;">*</span></label>
+
+<input type="text" readonly id="account_number" name="account_number" required 
+[(ngModel)]="form.account_number" 
+class="form-control" >
+
+<label class="col-lg-5"> Phone No<span style="color:red;">*</span></label>
+
+<input type="text" id="phone" name="phone" required 
+[(ngModel)]="form.phone"  
+class="form-control" >
+
+<label class="col-lg-5"> Company Name<span style="color:red;">*</span></label>
+
+<input type="text" id="companyName" name="companyName" required 
+[(ngModel)]="form.companyName" 
+class="form-control" >
+
+<label class="col-lg-5"> State<span style="color:red;">*</span></label>
+
+<input type="text" id="state" name="state" required 
+[(ngModel)]="form.state" 
+class="form-control" >
+
+<label class="col-lg-5"> Address<span style="color:red;">*</span></label>
+
+<input type="text" id="address" name="address" required 
+[(ngModel)]="form.address"  
+class="form-control" >
+
+<label class="col-lg-5"> Zip Code<span style="color:red;">*</span></label>
+
+<input type="text" id="zipCode" name="zipCode" required 
+[(ngModel)]="form.zipCode"  
+class="form-control" >
+
+<label class="col-lg-5"> City<span style="color:red;">*</span></label>
+
+<input type="text" id="city" name="city" required 
+[(ngModel)]="form.city"  
+class="form-control" >
+
+
+</div>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-secondary" type="submit"
+(click)="onCloseHandled()"  
+>Save</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+

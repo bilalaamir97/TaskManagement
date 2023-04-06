@@ -1,0 +1,100 @@
+<div class="container">
+</div>
+
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+
+<div class="col-lg-12" style=" background-color: white;" >
+
+<br>
+<div class="row">
+
+<div class="col-lg-4">
+
+<label>Select Month</label>
+<input
+type="month"
+class="form-control"
+id="month"
+name="month"
+required
+[(ngModel)]="form.month" />
+
+<br><br>
+<!-- <a href="http://localhost:82/task_reports/payroll_report" target="_blank"> -->
+<button class="btn btn-info" type="button" (click)="onSubmit()">
+Show Report
+</button>
+<!-- </a> -->
+</div>
+
+<div class="col-lg-4">
+
+    
+</div>
+
+<div class="col-lg-4">
+
+</div>
+
+</div>
+<br>
+</div>
+</form>
+
+<div style="background-color: white;" class="table-responsive" id="pdfTable" #pdfTable>
+<table class="table table-striped table-bordered display" id="contentToConvert">
+<nav class="navbar" style="float: left;">
+&nbsp;&nbsp;    
+
+<button class="btn btn-secondary" (click)="downloadAsPDF()">Export To PDF</button>
+
+</nav>
+
+<tr>
+
+<th >Sno</th>
+<th >For The Month</th>
+<th >Emp Name</th>
+<th >Total Days</th>
+<th >Working Days</th>
+<th >Payrate</th>
+<th >Per Day Rate</th>
+<th >Emp Type</th>
+<th >No Of Late</th>
+<th >Late Days Amount</th>
+<th >Total Working Hours</th>
+<th >Current Monthly Pay</th>
+
+</tr>
+
+<ng-container *ngFor="let info of getData; let i = index;">
+
+<tr style="font-weight: bold; " >
+
+<td >{{i + 1}}</td>
+<td >{{info.forTheMonth}}</td>
+<td >{{info.empName}}</td>
+<td >{{info.totalDays}}</td>
+<td >{{info.wDays}}</td>
+<td >{{info.payrate}}</td>
+<td >{{info.empType}}</td>
+<td >{{info.noOfLate}}</td>
+<td >{{info.lateDaysAmount}}</td>
+<td >{{info.totalWorkingHours}}</td>
+<td >{{info.currentMonthNetPay}}</td>
+
+<td >Y</td>
+
+</tr>
+
+</ng-container>
+
+</table>
+
+</div>
+
